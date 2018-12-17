@@ -47,7 +47,7 @@ def write_log(func):# в качестве аргумента передаетс�
         #time.sleep(2)
         result = func(*args)
         timeEnd = datetime.datetime.now()
-        with open("log.txt", "a") as f:
+        with open("logger.txt", "a") as f:
             f.write(("*" * 30) + "\n")
             f.write("Начало: " + str(timeStart) + "\n")
             f.write(args[3]+": " + str(args[2]) + "\n")
@@ -60,9 +60,9 @@ def write_log(func):# в качестве аргумента передаетс�
 
 """Функция конвертирующая валюту, которая декорируется логгером """    
 @write_log
-def calculate_valute(fromValuteValue,toValuteValue,edinic,fromValute,toValute):
+def calculate_valute(fromValuteValue,toValuteValue,unit,fromValute,toValute):
     koff = fromValuteValue / toValuteValue
-    result = edinic * koff
+    result = unit * koff
     return result
 
 if __name__ == "__main__":
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         
     while True:
         try:
-            fromValute = input("Выберите ковертируемую валюту: ")  
+            fromValute = input("Выберите конвертируемую валюту: ")  
             toValute = input("Выберите конечную валюту: ") 
             
             fromValuteValue = valutes[fromValute]
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     
     while True:
         try:
-            Money = float(input("введите количество едениц валюты: "))
+            Money = float(input("введите количество единиц валюты: "))
         except (TypeError, ValueError):
             print("Вы ввели неправильное значение, нужно вводить число.")
             continue
